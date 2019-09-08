@@ -1,0 +1,50 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{%static 'account/style.css' %}">
+    <script src="{% static 'account/jscript.js' %}"></script>
+    <title>{%block title%}{%endblock%}</title>
+</head>
+<li>
+{%if messages %}
+{% for message in messages %}
+<li class="{{message.tags}}">
+    {{message|safe}}
+    <b><a href="#"></a></b>
+</li>>
+{%endfor%}
+{%endif%}
+<header>
+    {% if request.user.is_authenticated %}
+    <ul>
+        <li {% if section == "dashboard" %} class="selected"{% endif %}
+            <a href="{% url 'dashboard' %}">panel głowny</a>
+    </ul>
+    <ul>
+        <li {% if section == "pictures" %} class="selected"{% endif %}
+            <a href="#">zdj</a>
+    </ul>
+    <ul>
+        <li {% if section == "peaple" %} class="selected"{% endif %}
+            <a href="#">znajmi</a>
+    </ul>
+    {% endif %}
+</header>
+<div>
+<span class="user">
+    {% if request.user.is_authenticated %}
+        <p>Witaj{{ request.user.first_name }}</p>
+    {%else%}
+    <a href="{%url 'login'%}">Zaloguj</a>
+    {%endif%}
+</span>
+</div>
+
+{%block content%}
+
+{%endblock%}
+</body>
+</html>

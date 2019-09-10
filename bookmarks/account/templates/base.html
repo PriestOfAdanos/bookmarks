@@ -1,6 +1,8 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
     {% load static %}
     <meta charset="UTF-8">
@@ -8,6 +10,11 @@
     <script src="{% static 'account/jscript.js' %}"></script>
     <title>{%block title%}{%endblock%}</title>
 </head>
+
+
+
+<body>
+
 <li>
 {%if messages %}
 {% for message in messages %}
@@ -46,5 +53,21 @@
 {%block content%}
 
 {%endblock%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js"></script>
+<script>
+var csrftoken = $.cookie('csrftoken')
+function csrfSafeMethod(method){
+return(/^(GET|HEAD|OPTIONS|TRACE)$/.test(method);
+
+}
+
+    $(document).ready(function()
+    {
+        {% block domready %}
+
+        {% endblock %}
+    });
+</script>
 </body>
 </html>

@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+
+{% block content %}
+
+
+
+{{total_likes}}
+
+{%load thumbnail%}
+
+{% thumbnail image.image "300" as im %}
+
+    <a href="{{image.image.url}}">
+        <img src="{{im.url}}" class="image-detail">
+    </a>
+{% endthumbnail%}
+{{image_description|linebreaks}}
+{% endblock %}
